@@ -4,7 +4,7 @@ Investigating using GANS to help train a lane detection neural network
 ## Purpose
 To investigate whether the usage of a GAN-trained generator can be used as the basis of weights for a semantic segmentation model for lane detection.
 
-## Planned Steps
+## Planned Architectures
 1. Check performance of network similar to original network [here](https://github.com/mvirgo/MLND-Capstone) when using square images instead of rectangular, to fit with the norm in training convolutional neural networks.
 2. Check performance of the network by adding in batch normalization for all layers, adding skip layers, and trying strides of 2 instead of max pooling.
 3. Check performance gained when using an ImageNet pretrained architecture (MobileNet, Inception, ResNet, etc.) as the encoder part of the network, with a similar decoder structure as before for the semantic inference. Check both speed and inference accuracy.
@@ -15,4 +15,7 @@ To investigate whether the usage of a GAN-trained generator can be used as the b
 8. Optimize for inference; again compare for speed and accuracy.
 
 ## Results
-**Pending**
+**In Progress**
+
+Architecture | Val Acc | Speed | Parameters
+arch-1 | 0.9626 | 5.85 ms | 725,101
