@@ -18,4 +18,5 @@ To investigate whether the usage of a GAN-trained generator can be used as the b
 **In Progress**
 
 Architecture | Val Acc | Speed | Parameters
+--- | --- | --- | ---
 arch-1 | 0.9626 | 5.85 ms | 725,101
