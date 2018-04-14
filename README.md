@@ -16,7 +16,11 @@ To investigate whether the usage of a GAN-trained generator can be used as the b
 
 ## Results
 **In Progress**
+Inference times benchmarked using a GTX 1060.
+See `performance.py` file for example evaluation script.
 
-Architecture | Val Acc | Speed | Parameters
+Test dataset is based annotations of Udacity's challenge video from Advanced Lane Finding.
+
+Architecture | Test Acc | Speed | Parameters
 --- | --- | --- | ---
-arch-1 | 0.9626 | 5.85 ms | 725,101
+arch-1 | 0.8696 | 4.96 ms | 725,101
