@@ -16,10 +16,11 @@ To investigate whether the usage of a GAN-trained generator can be used as the b
 
 ## Results
 **In Progress**
+
 Inference times benchmarked using a GTX 1060.
 See `performance.py` file for example evaluation script.
 
-Test dataset is based annotations of Udacity's challenge video from Advanced Lane Finding.
+Test dataset is based on annotations of Udacity's challenge video from Advanced Lane Finding.
 
 Architecture | Test Acc | Speed | Parameters
 --- | --- | --- | ---
