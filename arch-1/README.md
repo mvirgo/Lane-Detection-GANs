@@ -8,9 +8,15 @@ Check performance of a network similar to the original [here](https://github.com
 2. Using the exact same architecture as before
    - 2 Conv, max pooling, 3 Conv, max pooling, 2 Conv, max pooling for encoder
    - Upsampling, 2 DeConv, Upsampling, 3 DeConv, Upsampling, 2 DeConv
+3. Tried two versions:
+   - `arch-1.1` - Exact same as previous network, given the above
+   - `arch-1.2` - Same as above, except change final layer to `sigmoid` activation and loss to `binary_crossentropy`
 
 ## Results
 
-Test Acc | Speed | Parameters
---- | --- | ---
-0.8696 | 4.96 ms | 725,101
+Arch | Test Acc | Speed | Parameters
+--- | --- | --- | ---
+arch-1.1 | 0.8701 | 4.96 ms | 725,101
+arch-1.2 | 0.8657 | 4.91 ms | 725,101
+
+**arch-1.1** is the best here.

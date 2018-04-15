@@ -4,7 +4,7 @@ from keras.models import load_model
 import time
 
 # Load Keras model
-model = load_model('full_CNN_model112.h5')
+model = load_model('arch-1.1.h5')
 
 # Load test dataset
 images = np.array(pickle.load(open("challenge_pics112.p", "rb" )))
@@ -31,3 +31,4 @@ score, acc = model.evaluate(images, labels)
 
 print("{0:.2f}".format(speed), "ms average inference")
 print('{:.2%}'.format(acc), "accuracy")
+print(model.count_params(), "model parameters")
