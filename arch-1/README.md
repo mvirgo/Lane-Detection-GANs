@@ -14,5 +14,3 @@ Check performance of a network similar to the original [here](https://github.com
 Test Acc | Speed | Parameters
 --- | --- | ---
 0.8696 | 4.96 ms | 725,101
-
-See also the included output from the challenge video.
