@@ -25,3 +25,4 @@ Test dataset is based on annotations of Udacity's challenge video from Advanced 
 Architecture | Test Acc | Speed | Parameters
 --- | --- | --- | ---
 arch-1 | 0.8701 | 4.96 ms | 725,101
+arch-2 | 0.8691 | 5.35 ms | 725,101

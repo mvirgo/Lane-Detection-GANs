@@ -124,7 +124,7 @@ x6 = Conv2DTranspose(32, (3, 3), padding='same', strides=(1,1), activation = 're
 x6 = Add()([x6, x])
 
 # Final layer - only including one channel so 1 filter
-predictions = Conv2DTranspose(1, (3, 3), padding='same', strides=(1,1), activation = 'relu', name = 'Final')(x6)
+predictions = Conv2DTranspose(1, (3, 3), padding='same', strides=(1,1), activation = 'sigmoid', name = 'Final')(x6)
 
 ### End of network ###
 
