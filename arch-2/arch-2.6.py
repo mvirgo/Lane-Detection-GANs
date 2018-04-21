@@ -184,10 +184,6 @@ model.fit_generator(datagen.flow(X_train, y_train, batch_size=batch_size),
                     epochs=epochs, verbose=1, callbacks=[checkpoint, stopper],
                     validation_data=(X_val, y_val))
 
-# Freeze layers since training is done
-model.trainable = False
-model.compile(optimizer='Adam', loss='binary_crossentropy')
-
 # Show summary of model
 model.summary()
 
