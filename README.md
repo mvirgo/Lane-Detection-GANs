@@ -29,4 +29,6 @@ Architecture | Test Acc | Speed | Parameters
 arch-1 | 0.8701 | 4.96 ms | 725,101
 arch-2 | 0.8691 | 5.35 ms | 725,101
 arch-3 | 0.8712 | 67.86 ms | 25,441,345
-arch-4 | 0.8516 | 47.38 ms | 27,226,273
+arch-4 | 0.8701 | 79.73 ms | 25,441,345
+
+`arch-1` and `arch-4` are also fairly visually appealing, `arch-2` is pretty good as well, while `arch-3` seems to perform poorly when visualized.

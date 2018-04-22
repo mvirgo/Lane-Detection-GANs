@@ -84,7 +84,7 @@ x = UpSampling2D(size=pool_size)(x)
 x = Conv2DTranspose(32, (3, 3), padding='valid', strides=(1,1), activation = 'relu', name = 'Deconv6')(x)
 
 # Final layer - only including one channel so 1 filter
-predictions = Conv2DTranspose(1, (3, 3), padding='valid', strides=(1,1), activation = 'sigmoid', name = 'Final')(x)
+predictions = Conv2DTranspose(1, (3, 3), padding='valid', strides=(1,1), activation = 'relu', name = 'Final')(x)
 
 ### End of network ###
 
@@ -102,7 +102,7 @@ stopper = EarlyStopping(monitor='val_acc', min_delta=0.0003, patience=5)
 
 # Compiling and training the model
 model = Model(inputs=inp, outputs=predictions)
-model.compile(optimizer='Adam', loss='binary_crossentropy', metrics=['accuracy'])
+model.compile(optimizer='Adam', loss='mean_squared_error', metrics=['accuracy'])
 model.fit_generator(datagen.flow(X_train, y_train, batch_size=batch_size),
                     steps_per_epoch=len(X_train)/batch_size,
                     epochs=epochs, verbose=1, callbacks=[checkpoint, stopper],
