@@ -16,5 +16,5 @@ Check performance of a network similar to the original [here](https://github.com
 
 Arch | Test Acc | Speed | Parameters
 --- | --- | --- | ---
-**arch-1.1** | 0.8701 | 4.96 ms | 725,101
-arch-1.2 | 0.8657 | 4.91 ms | 725,101
+**arch-1.1** | 0.9768 | 5.41 ms | 725,101
+arch-1.2 | 0.9743 | 5.20 ms | 725,101

@@ -13,7 +13,7 @@ Similar to architecture 3, check performance gained when using an ImageNet pretr
 
 Arch | Test Acc | Speed | Parameters
 --- | --- | --- | ---
-arch-4.1 | 0.8692 | 46.60 ms | 27,226,273
-**arch-4.2** | 0.8701 | 79.73 ms | 25,441,345
+arch-4.1 | 0.9720 | 46.62 ms | 27,226,273
+**arch-4.2** | 0.9778 | 78.89 ms | 25,441,345
 
 MSE with ReLU output was found to be more accurate than Binary Crossentropy with Sigmid output.

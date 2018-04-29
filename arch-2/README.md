@@ -17,12 +17,12 @@ Check performance of the original network by adding in batch normalization for a
 
 Arch | Test Acc | Speed | Parameters
 --- | --- | --- | ---
-arch-2.1 | 0.8667 | 4.82 ms | 725,101
-arch-2.2 | 0.8677 | 14.55 ms | 728,749
-arch-2.3 | 0.8683 | 6.18 ms | 746,413
-**arch-2.4** | 0.8691 | 5.35 ms | 725,101
-arch-2.5 | 0.8663 | 14.41 ms | 728,749
-arch-2.6 | 0.8681 | 19.22 ms | 751,341
-arch-2.7 | 0.8684 | 14.80 ms | 728,749
+arch-2.1 | 0.9756 | 4.85 ms | 725,101
+arch-2.2 | 0.9727 | 14.43 ms | 728,749
+arch-2.3 | 0.9766 | 6.56 ms | 746,413
+**arch-2.4** | 0.9771 | 5.18 ms | 725,101
+arch-2.5 | 0.9714 | 14.29 ms | 728,749
+arch-2.6 | 0.9755 | 18.90 ms | 751,341
+arch-2.7 | 0.9671 | 14.62 ms | 728,749
 
 Interestingly here, the networks without skip layers work best with `mean_squared_error` as a loss function, while those with skip layers need `binary_crossentropy` as a loss function, or else they stop learning fairly early on.

@@ -17,6 +17,8 @@ To investigate whether the usage of a GAN-trained generator can be used as the b
 ## Results
 **In Progress**
 
+**Warning:** Architectures 3 and 4 may need to be retrained as I believe I need to pre-process the images differently for the ImageNet pre-trained architectures.
+
 Inference times benchmarked using a GTX 1060.
 See `performance.py` file for example evaluation script.
 
@@ -26,9 +28,9 @@ Test accuracy is based on intersection over union metric.
 
 Architecture | Test Acc | Speed | Parameters
 --- | --- | --- | ---
-arch-1 | 0.8701 | 4.96 ms | 725,101
-arch-2 | 0.8691 | 5.35 ms | 725,101
-arch-3 | 0.8712 | 67.86 ms | 25,441,345
-arch-4 | 0.8701 | 79.73 ms | 25,441,345
+arch-1 | 0.9768 | 5.41 ms | 725,101
+arch-2 | 0.9771 | 5.18 ms | 725,101
+arch-3 | 0.9460 | 39.75 ms | 26,233,441
+arch-4 | 0.9778 | 78.89 ms | 25,441,345
 
 `arch-1` and `arch-4` are also fairly visually appealing, `arch-2` is pretty good as well, while `arch-3` seems to perform poorly when visualized.
