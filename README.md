@@ -17,7 +17,9 @@ To investigate whether the usage of a GAN-trained generator can be used as the b
 ## Results
 **In Progress**
 
-**Warning:** Architectures 3 and 4 may need to be retrained as I believe I need to pre-process the images differently for the ImageNet pre-trained architectures.
+See `imagenet_preprocess.py` file for pre-processing on the ImageNet pre-trained networks - this needs to be dropped into the relevant directory for training.
+
+**Eventual update:** I will eventually add pre-processing times in for the inference speed to more accurately portray how quickly each architecture is truly making predictions.
 
 Inference times benchmarked using a GTX 1060.
 See `performance.py` file for example evaluation script.
