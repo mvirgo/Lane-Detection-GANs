@@ -99,7 +99,6 @@ predictions = Conv2DTranspose(1, (3, 3), padding='valid', strides=(1,1), activat
 # Using a generator to help the model use less data
 # Channel shifts help with shadows slightly
 datagen = ImageDataGenerator(channel_shift_range=0.2)
-datagen.fit(X_train)
 
 # Save down only the best result
 checkpoint = ModelCheckpoint(filepath='arch-3.3.h5', 
