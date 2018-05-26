@@ -11,6 +11,11 @@ import numpy as np
 from keras.applications.inception_v3 import preprocess_input as pre_inception
 from keras.applications.resnet50 import preprocess_input as pre_resnet
 
+def label_normalizer(x):
+    x = np.array(x, dtype=np.float64)
+    x /= 255.
+    return x
+
 def inception_preprocess_input(x):
     x = np.expand_dims(x, axis=0)
     x = pre_inception(x)

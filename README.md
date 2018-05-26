@@ -17,7 +17,7 @@ To investigate whether the usage of a GAN-trained generator can be used as the b
 ## Results
 **In Progress**
 
-See `imagenet_preprocess.py` file for pre-processing on the ImageNet pre-trained networks - this needs to be dropped into the relevant directory for training.
+See `adj_preprocess.py` file for pre-processing on the labels for all networks, as well as images for the ImageNet pre-trained networks - this needs to be dropped into the relevant directory for training.
 
 **Eventual update:** I will eventually add pre-processing times in for the inference speed to more accurately portray how quickly each architecture is truly making predictions.
 

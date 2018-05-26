@@ -1,8 +1,3 @@
-import numpy as np
-import pickle
-from sklearn.utils import shuffle
-from sklearn.model_selection import train_test_split
-
 # Import necessary items from Keras
 from keras.applications.inception_v3 import InceptionV3
 from keras.models import Model
@@ -10,24 +5,18 @@ from keras.layers import Dense, Activation, Dropout, UpSampling2D, Flatten
 from keras.layers import Conv2DTranspose, Conv2D, MaxPooling2D, Reshape
 from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import ModelCheckpoint, EarlyStopping
+from keras.utils.io_utils import HDF5Matrix
+from adj_preprocess import label_normalizer
 
 # Load training images
-X_train = np.array(pickle.load(open("full_CNN_train299.p", "rb" )))
-X_val = np.array(pickle.load(open("challenge_pics299.p", "rb" )))
+X_train = HDF5Matrix('data299.h5', 'images')
+X_val = HDF5Matrix('challenge_pics299.h5', 'images')
 
 # Load image labels
-y_train = np.array(pickle.load(open("full_CNN_labels112.p", "rb" )))
-y_val = np.array(pickle.load(open("challenge_lane_labels112.p", "rb" )))
+y_train = HDF5Matrix('labels112.h5', 'labels', normalizer=label_normalizer)
+y_val = HDF5Matrix('challenge_lane_labels112.h5', 'labels', normalizer=label_normalizer)
 
-# Normalize labels - training images take normal imagenet preprocessing
-y_train = y_train / 255
-y_val = y_val / 255
-
-# Shuffle training images along with their labels
-seed_num = 123456789
-X_train, y_train = shuffle(X_train, y_train, random_state=seed_num)
-
-# Batch size, epochs and pool size below are all paramaters to fiddle with for optimization
+# Batch size, epochs and pool size below are all parameters to fiddle with for optimization
 batch_size = 16
 epochs = 50
 pool_size = (2, 2)
