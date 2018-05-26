@@ -6,7 +6,7 @@ from keras.layers import Conv2DTranspose, MaxPooling2D, ZeroPadding2D
 from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 from keras.utils.io_utils import HDF5Matrix
-from adj_preprocess import label_normalizer
+from adj_preprocess import label_normalizer, inception_preprocess_input
 
 # Load training images
 X_train = HDF5Matrix('data299.h5', 'images')
@@ -81,7 +81,8 @@ predictions = Conv2DTranspose(1, (3, 3), padding='valid', strides=(1,1), activat
 
 # Using a generator to help the model use less data
 # Channel shifts help with shadows slightly
-datagen = ImageDataGenerator(channel_shift_range=0.2)
+datagen = ImageDataGenerator(channel_shift_range=0.2, preprocessing_function=inception_preprocess_input)
+val_datagen = ImageDataGenerator(preprocessing_function=inception_preprocess_input)
 
 # Save down only the best result
 checkpoint = ModelCheckpoint(filepath='arch-3.6.h5', 
@@ -95,7 +96,8 @@ model.compile(optimizer='Adam', loss='binary_crossentropy', metrics=['accuracy']
 model.fit_generator(datagen.flow(X_train, y_train, batch_size=batch_size),
                     steps_per_epoch=len(X_train)/batch_size,
                     epochs=epochs, verbose=1, callbacks=[checkpoint, stopper],
-                    validation_data=(X_val, y_val))
+                    validation_data=val_datagen.flow(X_val, y_val, batch_size=batch_size),
+                    validation_steps=len(X_val)/batch_size)
 
 # Show summary of model
 model.summary()

@@ -28,6 +28,8 @@ Test dataset is based on annotations of Udacity's challenge video from Advanced 
 
 Test accuracy is based on intersection over union metric.
 
+**Warning:** All `arch-3` and `arch-4` results are out of date on accuracy - I forgot to preprocess the images correctly for ImageNet. These will be updated soon.
+
 Architecture | Test Acc | Speed | Parameters
 --- | --- | --- | ---
 arch-1 | 0.9768 | 5.41 ms | 725,101
