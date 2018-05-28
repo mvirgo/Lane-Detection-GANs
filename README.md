@@ -14,12 +14,13 @@ To investigate whether the usage of a GAN-trained generator can be used as the b
 7. Potentially trade back and forth between a fully convolutional model and the generator portion of a GAN, such that the "embeddings" in the middle of the fully convolutional model are similar to the generator's input noise, and go back and forth until little improvement is seen. 
 8. Optimize for inference; again compare for speed and accuracy.
 
+See `adj_preprocess.py` file for pre-processing on the labels for all networks, as well as images for the ImageNet pre-trained networks - this needs to be dropped into the relevant directory for training.
+
 ## Results
 **In Progress**
 
-See `adj_preprocess.py` file for pre-processing on the labels for all networks, as well as images for the ImageNet pre-trained networks - this needs to be dropped into the relevant directory for training.
 
-**Eventual update:** I will eventually add pre-processing times in for the inference speed to more accurately portray how quickly each architecture is truly making predictions.
+**Upcoming Changes** - Based on testing the first four architectures, there actually is surprisingly little difference specific to lane detection. This may be due to the simplicity of the task, where the lane is nearly always in the same location, and it's only the edges of the lane where most changes take place. As such, I might consider re-doing the work on a simplified version of Cityscapes dataset (say on a subset of classes), to potentially get more useful results.
 
 Inference times benchmarked using a GTX 1060.
 See `performance.py` file for example evaluation script.
@@ -28,13 +29,11 @@ Test dataset is based on annotations of Udacity's challenge video from Advanced 
 
 Test accuracy is based on intersection over union metric.
 
-**Warning:** All `arch-3` and `arch-4` results are out of date on accuracy - I forgot to preprocess the images correctly for ImageNet. These will be updated soon.
-
 Architecture | Test Acc | Speed | Parameters
 --- | --- | --- | ---
 arch-1 | 0.9768 | 5.41 ms | 725,101
 arch-2 | 0.9771 | 5.18 ms | 725,101
-arch-3 | 0.9460 | 39.75 ms | 26,233,441
-arch-4 | 0.9778 | 78.89 ms | 25,441,345
+arch-3 | 0.9518 | 41.47 ms | 27,226,273
+arch-4 | 0.9764 | 83.43 ms | 25,441,345
 
 `arch-1` and `arch-4` are also fairly visually appealing, `arch-2` is pretty good as well, while `arch-3` seems to perform poorly when visualized.
