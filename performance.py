@@ -1,21 +1,21 @@
 import numpy as np
-import pickle
-from keras.models import load_model
 import time
+from keras.models import load_model
+from keras.utils.io_utils import HDF5Matrix
+
 
 # Load Keras model
 model = load_model('arch-1a.h5')
 
 # Load test dataset
-images = np.array(pickle.load(open("challenge_pics112.p", "rb" )))
-labels = np.array(pickle.load(open("challenge_lane_labels112.p", "rb" )))
+images = HDF5Matrix('challenge_pics112.h5', 'images')
+labels = HDF5Matrix('challenge_lane_labels112.h5', 'labels')
 
 # Evaluate speed
 times = []
 
 for i in range(images.shape[0]):
-    img = np.array(images[i])
-    img = img[None,:,:,:]
+    img = images[i][None,:,:,:]
     
     start_time = time.time()
     # Make prediction with neural network)
