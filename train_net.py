@@ -1,12 +1,10 @@
 import argparse
 import importlib
 import logging
+from keras.applications.imagenet_utils import preprocess_input
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 from keras.preprocessing.image import ImageDataGenerator
 from keras.utils.io_utils import HDF5Matrix
-
-# Local imports
-from adj_preprocess import *
 
 def get_args():
 	'''Gets the arguments from the command line'''
@@ -58,15 +56,13 @@ def get_generators(args):
 	Channel shifts are used to help with shadows.
 	'''
 
-	if args.m.lower() == "resnet":
-		datagen = ImageDataGenerator(channel_shift_range=0.2, preprocessing_function=resnet_preprocess_input)
-		val_datagen = ImageDataGenerator(preprocessing_function=resnet_preprocess_input)
-	elif args.m.lower() == "inception":
-		datagen = ImageDataGenerator(channel_shift_range=0.2, preprocessing_function=inception_preprocess_input)
-		val_datagen = ImageDataGenerator(preprocessing_function=inception_preprocess_input)
+	if args.m.lower() == "resnet" or args.m.lower() == "inception":
+		preprocessing_function = preprocess_input
 	else:
-		datagen = ImageDataGenerator(channel_shift_range=0.2)
-		val_datagen = ImageDataGenerator()
+		preprocessing_function = None
+
+	datagen = ImageDataGenerator(channel_shift_range=0.2, preprocessing_function=preprocessing_function)
+	val_datagen = ImageDataGenerator(preprocessing_function=preprocessing_function)
 
 	return datagen, val_datagen
 
@@ -82,8 +78,8 @@ def train_model(args, data_size):
 	X_train = HDF5Matrix('data'+data_size+'.h5', 'images')
 	X_val = HDF5Matrix('challenge_pics'+data_size+'.h5', 'images')
 	# Load image labels
-	y_train = HDF5Matrix('labels112.h5', 'labels', normalizer=label_normalizer)
-	y_val = HDF5Matrix('challenge_lane_labels112.h5', 'labels', normalizer=label_normalizer)
+	y_train = HDF5Matrix('labels112.h5', 'labels')
+	y_val = HDF5Matrix('challenge_lane_labels112.h5', 'labels')
 	print("Training data loaded.")
 	# Get input_shape to feed into model
 	input_shape = X_train.shape[1:]
@@ -101,9 +97,10 @@ def train_model(args, data_size):
 	print("Model compiled, training initializing.")
 
 	# Save down only the best result
-	save_path = args.a.replace('.', '/')
-	checkpoint = ModelCheckpoint(filepath=save_path+'.h5', 
-                                 monitor='val_loss', save_best_only=True)
+	# Uses architecture name, output activation and loss
+	save_path = args.a.replace('.', '/') + '-' + args.fa[0] + args.l[0] + '.h5'
+	checkpoint = ModelCheckpoint(filepath=save_path, monitor='val_loss',
+                                     save_best_only=True)
 	# Stop early when improvement ends
 	stopper = EarlyStopping(monitor='val_acc', min_delta=0.0003, patience=5)
 

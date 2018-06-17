@@ -27,8 +27,7 @@ speed = (sum(times)/len(times))*1000
 
 # Evaluate accuracy
 model.compile(loss='binary_crossentropy',optimizer='adam',metrics=['accuracy'])
-# Note labels were normalized for training; divide by 255 here
-score, acc = model.evaluate(images, labels/255)
+score, acc = model.evaluate(images, labels)
 
 print("{0:.2f}".format(speed), "ms average inference")
 print('{:.2%}'.format(acc), "accuracy")
