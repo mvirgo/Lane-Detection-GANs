@@ -4,7 +4,7 @@ from keras.models import load_model
 import time
 
 # Load Keras model
-model = load_model('arch-1.1.h5')
+model = load_model('arch-1a.h5')
 
 # Load test dataset
 images = np.array(pickle.load(open("challenge_pics112.p", "rb" )))
