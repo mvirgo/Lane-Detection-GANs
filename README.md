@@ -14,7 +14,24 @@ To investigate whether the usage of a GAN-trained generator can be used as the b
 7. Potentially trade back and forth between a fully convolutional model and the generator portion of a GAN, such that the "embeddings" in the middle of the fully convolutional model are similar to the generator's input noise, and go back and forth until little improvement is seen. 
 8. Optimize for inference; again compare for speed and accuracy.
 
-See `adj_preprocess.py` file for pre-processing on the labels for all networks, as well as images for the ImageNet pre-trained networks - this needs to be dropped into the relevant directory for training.
+## Training
+The `train_net.py` file is used to run training on a given neural network architecture within the `architectures` folder. In order to do so, you must specify the location of the model, as if importing it as a module:
+`python train_net.py -a "architectures.arch-1.arch-1a"`
+
+Only the model location needs to be specified, although you can also use the following:
+`-a` - location of the model, as shown above. **Required**
+`-b` - batch size; defaults to 16
+`-e` - maximum number of epochs (script also contains `EarlyStopping`); defaults to 50
+`-fa` - the activation function to be used on the output layer; defaults to `'sigmoid'`
+`-l` - the loss function to be used; defaults to `'binary_crossentropy'`
+`-m` - if using "Inception" or "ResNet" pretrained on ImageNet, specify here so proper pre-processing is used (optional)
+
+For example, if desiring a batch size of 64, max epochs of 25, "relu" activation on the output, and "mean_squared_error" as the loss function, you'd use:
+`python train_net.py -a "architectures.arch-1.arch-1a" -b 64 -e 25 -fa "relu" -l "mean_squared_error"`
+
+**Warning: The models in the `architectures` folder have not yet been updated to work with this file; in the meantime you can use those files directly where they are, but need to drag in the `adj_preprocess.py` file to the relevant directory.**
+
+See `adj_preprocess.py` file for pre-processing on the labels for all networks, as well as images for the ImageNet pre-trained networks. 
 
 ## Results
 **In Progress**
