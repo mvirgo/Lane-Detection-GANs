@@ -1,7 +1,7 @@
 """
 This architecture uses my previous architecture from
 https://github.com/mvirgo/MLND-Capstone, just changed
-to using a 112x112x3 input, and with a 112x112x3 input.
+to using a 112x112x3 input, and with a 112x112x1 output.
 Fairly standard shrinking convolutional layers into
 expanding transpose convolutions.
 """

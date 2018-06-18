@@ -15,5 +15,3 @@ Arch | Test Acc | Speed | Parameters
 --- | --- | --- | ---
 arch-4a | 0.9751 | 48.60 ms | 27,226,273
 **arch-4b** | 0.9764 | 83.43 ms | 25,441,345
-
-MSE with ReLU output was found to be more accurate than Binary Crossentropy with Sigmid output.

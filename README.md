@@ -31,8 +31,6 @@ For example, if desiring a batch size of 64, max epochs of 25, "relu" activation
 
 `python train_net.py -a "architectures.arch-1.arch-1a" -b 64 -e 25 -fa "relu" -l "mean_squared_error"`
 
-**Warning: The models in the `architectures` folder for archs 2-4 have not yet been updated to work with this file.**
-
 All models are trained with the default output activation and loss above, unless otherwise specified.
 
 ## Results

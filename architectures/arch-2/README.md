@@ -24,5 +24,3 @@ arch-2c | 0.9766 | 6.56 ms | 746,413
 arch-2e | 0.9714 | 14.29 ms | 728,749
 arch-2f | 0.9755 | 18.90 ms | 751,341
 arch-2g | 0.9671 | 14.62 ms | 728,749
-
-Interestingly here, the networks without skip layers work best with `mean_squared_error` as a loss function, while those with skip layers need `binary_crossentropy` as a loss function, or else they stop learning fairly early on.
