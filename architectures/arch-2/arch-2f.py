@@ -14,7 +14,7 @@ expanding transpose convolutions.
 # Import necessary items from Keras
 from keras.models import Model
 from keras.layers import Add, Input, Dropout, UpSampling2D
-from keras.layers import Conv2DTranspose, Conv2D, Lambda
+from keras.layers import Conv2DTranspose, Conv2D
 from keras.layers.normalization import BatchNormalization
 
 def get_model(input_shape, final_activation):
@@ -43,7 +43,6 @@ def get_model(input_shape, final_activation):
 	x = Conv2D(32, (3, 3), padding='same', strides=(1,1), activation = 'relu', name = 'Conv3')(x)
 	x = BatchNormalization()(x)
 	x = Add()([x, x1])
-	x = Lambda(lambda x: x / 2)(x)
 	x = Dropout(0.2)(x)
 
 	# Increase number of filters for above for skip layer usage with 1x1 conv
@@ -59,7 +58,6 @@ def get_model(input_shape, final_activation):
 	x = Conv2D(64, (3, 3), padding='same', strides=(2,2), activation = 'relu', name = 'Conv5')(x)
 	x = BatchNormalization()(x)
 	x = Add()([x, x2])
-	x = Lambda(lambda x: x / 2)(x)
 	x = Dropout(0.2)(x)
 
 	# Increase number of filters for above for skip layer usage with 1x1 conv
@@ -75,7 +73,6 @@ def get_model(input_shape, final_activation):
 	x = Conv2D(128, (3, 3), padding='same', strides=(2,2), activation = 'relu', name = 'Conv7')(x)
 	x = BatchNormalization()(x)
 	x = Add()([x, x3])
-	x = Lambda(lambda x: x / 2)(x)
 	x = Dropout(0.2)(x)
 
 	# Have to upsample Conv7 to pass forward in the skip layer
@@ -93,7 +90,6 @@ def get_model(input_shape, final_activation):
 	x = Conv2DTranspose(128, (3, 3), padding='same', strides=(1,1), activation = 'relu', name = 'Deconv2')(x)
 	x = BatchNormalization()(x)
 	x = Add()([x, x4])
-	x = Lambda(lambda x: x / 2)(x)
 	x = Dropout(0.2)(x)
 
 	# Decrease number of filters for above for skip layer usage with 1x1 conv
@@ -113,7 +109,6 @@ def get_model(input_shape, final_activation):
 	x = Conv2DTranspose(64, (3, 3), padding='same', strides=(1,1), activation = 'relu', name = 'Deconv4')(x)
 	x = BatchNormalization()(x)
 	x = Add()([x, x5])
-	x = Lambda(lambda x: x / 2)(x)
 	x = Dropout(0.2)(x)
 
 	# Decrease number of filters for above for skip layer usage with 1x1 conv
@@ -133,7 +128,6 @@ def get_model(input_shape, final_activation):
 	x = Conv2DTranspose(32, (3, 3), padding='same', strides=(1,1), activation = 'relu', name = 'Deconv6')(x)
 	x = BatchNormalization()(x)
 	x = Add()([x, x6])
-	x = Lambda(lambda x: x / 2)(x)
 
 	# Final layer - only including one channel so 1 filter
 	predictions = Conv2DTranspose(1, (3, 3), padding='same', strides=(1,1), activation = final_activation, name = 'Final')(x)

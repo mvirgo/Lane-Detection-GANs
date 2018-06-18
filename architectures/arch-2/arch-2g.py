@@ -13,7 +13,7 @@ expanding transpose convolutions.
 # Import necessary items from Keras
 from keras.models import Model
 from keras.layers import Add, Input, Dropout, UpSampling2D
-from keras.layers import Conv2DTranspose, Conv2D, MaxPooling2D, Lambda
+from keras.layers import Conv2DTranspose, Conv2D, MaxPooling2D
 from keras.layers.normalization import BatchNormalization
 
 def get_model(input_shape, final_activation):
@@ -75,14 +75,12 @@ def get_model(input_shape, final_activation):
 	x6 = Conv2DTranspose(128, (3, 3), padding='same', strides=(1,1), activation = 'relu', name = 'Deconv1')(x6)
 	x6 = BatchNormalization()(x6)
 	x6 = Add()([x6, x5])
-	x6 = Lambda(lambda x6: x6 / 2)(x6)
 	x6 = Dropout(0.2)(x6)
 
 	# Deconv 2
 	x6 = Conv2DTranspose(128, (3, 3), padding='same', strides=(1,1), activation = 'relu', name = 'Deconv2')(x6)
 	x6 = BatchNormalization()(x6)
 	x6 = Add()([x6, x4])
-	x6 = Lambda(lambda x6: x6 / 2)(x6)
 	x6 = Dropout(0.2)(x6)
 
 	# Upsample 2
@@ -92,21 +90,18 @@ def get_model(input_shape, final_activation):
 	x6 = Conv2DTranspose(64, (3, 3), padding='same', strides=(1,1), activation = 'relu', name = 'Deconv3')(x6)
 	x6 = BatchNormalization()(x6)
 	x6 = Add()([x6, x3])
-	x6 = Lambda(lambda x6: x6 / 2)(x6)
 	x6 = Dropout(0.2)(x6)
 
 	# Deconv 4
 	x6 = Conv2DTranspose(64, (3, 3), padding='same', strides=(1,1), activation = 'relu', name = 'Deconv4')(x6)
 	x6 = BatchNormalization()(x6)
 	x6 = Add()([x6, x2])
-	x6 = Lambda(lambda x6: x6 / 2)(x6)
 	x6 = Dropout(0.2)(x6)
 
 	# Deconv 5
 	x6 = Conv2DTranspose(32, (3, 3), padding='same', strides=(1,1), activation = 'relu', name = 'Deconv5')(x6)
 	x6 = BatchNormalization()(x6)
 	x6 = Add()([x6, x1])
-	x6 = Lambda(lambda x6: x6 / 2)(x6)
 	x6 = Dropout(0.2)(x6)
 
 	# Upsample 3
@@ -116,7 +111,6 @@ def get_model(input_shape, final_activation):
 	x6 = Conv2DTranspose(32, (3, 3), padding='same', strides=(1,1), activation = 'relu', name = 'Deconv6')(x6)
 	x6 = BatchNormalization()(x6)
 	x6 = Add()([x6, x])
-	x6 = Lambda(lambda x6: x6 / 2)(x6)
 
 	# Final layer - only including one channel so 1 filter
 	predictions = Conv2DTranspose(1, (3, 3), padding='same', strides=(1,1), activation = final_activation, name = 'Final')(x6)
