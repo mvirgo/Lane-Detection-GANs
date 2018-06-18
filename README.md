@@ -36,7 +36,7 @@ All models are trained with the default output activation and loss above, unless
 ## Results
 **In Progress**
 
-**Results below need to be updated for archs 2-4 due to change in labeling**
+**Results below need to be updated for archs 3&4 due to change in labeling**
 
 **Upcoming Changes** - Based on testing the first four architectures, there actually is surprisingly little difference specific to lane detection. This may be due to the simplicity of the task, where the lane is nearly always in the same location, and it's only the edges of the lane where most changes take place. As such, I might consider re-doing the work on a simplified version of Cityscapes dataset (say on a subset of classes), to potentially get more useful results.
 
@@ -50,8 +50,8 @@ Test accuracy is based on intersection over union metric.
 Architecture | Test Acc | Speed | Parameters
 --- | --- | --- | ---
 arch-1 | 0.9891 | 5.47 ms | 725,101
-arch-2 | 0.9771 | 5.18 ms | 725,101
+arch-2 | 0.9920 | 6.24 ms | 746,413
 arch-3 | 0.9518 | 41.47 ms | 27,226,273
 arch-4 | 0.9764 | 83.43 ms | 25,441,345
 
-`arch-1` and `arch-4` are also fairly visually appealing, `arch-2` is pretty good as well, while `arch-3` seems to perform poorly when visualized.
+`arch-1`, `arch-2` and `arch-4` are also fairly visually appealing, while `arch-3` seems to perform poorly when visualized.

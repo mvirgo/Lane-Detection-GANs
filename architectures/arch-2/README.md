@@ -17,10 +17,10 @@ Check performance of the original network by adding in batch normalization for a
 
 Arch | Test Acc | Speed | Parameters
 --- | --- | --- | ---
-arch-2a | 0.9756 | 4.85 ms | 725,101
-arch-2b | 0.9727 | 14.43 ms | 728,749
-arch-2c | 0.9766 | 6.56 ms | 746,413
-**arch-2d** | 0.9771 | 5.18 ms | 725,101
-arch-2e | 0.9714 | 14.29 ms | 728,749
-arch-2f | 0.9755 | 18.90 ms | 751,341
-arch-2g | 0.9671 | 14.62 ms | 728,749
+arch-2a | 0.9898 | 4.95 ms | 725,101
+arch-2b | 0.9880 | 14.99 ms | 728,749
+**arch-2c** | 0.9920 | 6.24 ms | 746,413
+arch-2d | 0.9896 | 5.50 ms | 725,101
+arch-2e | 0.9859 | 15.33 ms | 728,749
+arch-2f | 0.9851 | 19.92 ms | 751,341
+arch-2g | 0.9876 | 15.06 ms | 728,749
