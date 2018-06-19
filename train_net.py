@@ -1,7 +1,7 @@
 import argparse
 import importlib
 import logging
-from keras.applications.imagenet_utils import preprocess_input
+from adj_preprocess import adj_preprocess_input
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 from keras.preprocessing.image import ImageDataGenerator
 from keras.utils.io_utils import HDF5Matrix
@@ -57,7 +57,7 @@ def get_generators(args):
 	'''
 
 	if args.m.lower() == "resnet" or args.m.lower() == "inception":
-		preprocessing_function = preprocess_input
+		preprocessing_function = adj_preprocess_input
 	else:
 		preprocessing_function = None
 
