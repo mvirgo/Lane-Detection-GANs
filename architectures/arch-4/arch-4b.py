@@ -16,8 +16,8 @@ from keras.layers import Conv2DTranspose, Reshape
 
 def get_model(input_shape, final_activation):
 
-    # Set pooling size
-    pool_size = (2, 2)
+	# Set pooling size
+	pool_size = (2, 2)
 
 	# Using Inception with ImageNet pre-trained weights
 	inception = InceptionV3(weights='imagenet')

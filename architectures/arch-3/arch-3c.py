@@ -15,19 +15,19 @@ from keras.layers import Conv2DTranspose, Reshape
 
 def get_model(input_shape, final_activation):
 
-    # Set pooling size
-    pool_size = (2, 2)
+	# Set pooling size
+	pool_size = (2, 2)
 
 	# Using ResNet with ImageNet pre-trained weights
 	resnet = ResNet50(weights='imagenet')
 
 	# Set the pre-trained weights to not be trainable
 	for layer in resnet.layers:
-	    layer.trainable = False
+		layer.trainable = False
 
 	# Get rid of final three layers - global average pooling, flatten, FC
 	for i in range(3):
-	    resnet.layers.pop()
+		resnet.layers.pop()
 
 	# Grab input and output in order to make a new model
 	inp = resnet.input
