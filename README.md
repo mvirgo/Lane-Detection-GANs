@@ -31,6 +31,8 @@ For example, if desiring a batch size of 64, max epochs of 25, "relu" activation
 
 `python train_net.py -a "architectures.arch-1.arch-1a" -b 64 -e 25 -fa "relu" -l "mean_squared_error"`
 
+Add `-m "resnet"` or `-m "inception"` to appropriately work with those models.
+
 All models are trained with the default output activation and loss above, unless otherwise specified.
 
 ## Results
@@ -41,7 +43,7 @@ All models are trained with the default output activation and loss above, unless
 **Upcoming Changes** - Based on testing the first four architectures, there actually is surprisingly little difference specific to lane detection. This may be due to the simplicity of the task, where the lane is nearly always in the same location, and it's only the edges of the lane where most changes take place. As such, I might consider re-doing the work on a simplified version of Cityscapes dataset (say on a subset of classes), to potentially get more useful results.
 
 Inference times benchmarked using a GTX 1060.
-See `performance.py` file for example evaluation script.
+See `performance.py` file for example evaluation script. This also takes the arguments `-a` and `-m` per above udner **Training**, *however* here `-a` refers to the location of the trained `.h5` file, and should both include "/" directories as well as ".h5" at the end. Somewhat confusing, but I may update this to line up later.
 
 Test dataset is based on annotations of Udacity's challenge video from Advanced Lane Finding.
 
