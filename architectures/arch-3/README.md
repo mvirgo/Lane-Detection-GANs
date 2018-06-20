@@ -17,9 +17,9 @@ Check performance gained when using an ImageNet pretrained architecture (Incepti
 
 Arch | Test Acc | Speed | Parameters
 --- | --- | --- | ---
-arch-3a | 0.9317 | 42.89 ms | 29,098,209
-arch-3b | 0.9367 | 70.60 ms | 28,249,281
-**arch-3c** | 0.9518 | 41.47 ms | 27,226,273
-arch-3d | 0.9500 | 70.81 ms | 25,441,345
-arch-3e | 0.9481 | 42.29 ms | 26,233,441
-arch-3f | 0.9364 | 74.59 ms | 24,448,513
+arch-3a | 0.9649 | 43.26 ms | 29,098,209
+arch-3b | 0.9595 | 71.06 ms | 28,249,281
+arch-3c | 0.9565 | 40.85 ms | 27,226,273
+arch-3d | 0.9486 | 70.24 ms | 25,441,345
+**arch-3e** | 0.9705 | 42.18 ms | 26,233,441
+arch-3f | 0.9694 | 70.28 ms | 24,448,513

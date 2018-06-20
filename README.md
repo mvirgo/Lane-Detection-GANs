@@ -38,12 +38,12 @@ All models are trained with the default output activation and loss above, unless
 ## Results
 **In Progress**
 
-**Results below need to be updated for archs 3&4 due to change in labeling**
+**Results below need to be updated for arch-4 due to change in labeling**
 
 **Upcoming Changes** - Based on testing the first four architectures, there actually is surprisingly little difference specific to lane detection. This may be due to the simplicity of the task, where the lane is nearly always in the same location, and it's only the edges of the lane where most changes take place. As such, I might consider re-doing the work on a simplified version of Cityscapes dataset (say on a subset of classes), to potentially get more useful results.
 
 Inference times benchmarked using a GTX 1060.
-See `performance.py` file for example evaluation script. This also takes the arguments `-a` and `-m` per above udner **Training**, *however* here `-a` refers to the location of the trained `.h5` file, and should both include "/" directories as well as ".h5" at the end. Somewhat confusing, but I may update this to line up later.
+See `performance.py` file for example evaluation script. This also takes the arguments `-a` and `-m` per above under **Training**, *however* here `-a` refers to the location of the trained `.h5` file, and should both include "/" directories as well as ".h5" at the end. Somewhat confusing, but I may update this to line up later.
 
 Test dataset is based on annotations of Udacity's challenge video from Advanced Lane Finding.
 
@@ -53,7 +53,7 @@ Architecture | Test Acc | Speed | Parameters
 --- | --- | --- | ---
 arch-1 | 0.9891 | 5.47 ms | 725,101
 arch-2 | 0.9920 | 6.24 ms | 746,413
-arch-3 | 0.9518 | 41.47 ms | 27,226,273
+arch-3 | 0.9705 | 42.18 ms | 26,233,441
 arch-4 | 0.9764 | 83.43 ms | 25,441,345
 
-`arch-1`, `arch-2` and `arch-4` are also fairly visually appealing, while `arch-3` seems to perform poorly when visualized.
+`arch-1`, `arch-2` and `arch-4` are also fairly visually appealing, while `arch-3` seems to be more like a lane-shaped blob that goes outside the lane lines often.
