@@ -17,7 +17,7 @@ def get_args():
 	e_desc = "The max amount of epochs to train for"
 	fa_desc = "The activation function used on the final layer (must be from Keras)"
 	l_desc = "The loss function to train on (must be from Keras)"
-	m_desc = "The ImageNet pre-trained model used as encoder"
+	m_desc = "The ImageNet pre-trained model used as encoder ('resnet', 'inception', or leave empty)"
 
 	# -- Create the arguments
 	parser.add_argument("-a", help = a_desc)

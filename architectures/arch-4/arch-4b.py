@@ -2,8 +2,8 @@
 This architecture uses Inception as a feature extractor,
 followed by the decoder in my previous architecture from
 https://github.com/mvirgo/MLND-Capstone.
-To match Inception with the decoder, GlobalAveragePooling is used
-along with a fully-connected layer. Inception is fully re-trained,
+To match Inception with the decoder, ZeroPadding is used to
+match the desired 10x10 shape. Inception is fully re-trained,
 but uses ImageNet pre-trained weights as a starting point.
 Uses a 299x299x3 input to a 112x112x1 output.
 """
@@ -11,8 +11,8 @@ Uses a 299x299x3 input to a 112x112x1 output.
 # Import necessary items from Keras
 from keras.applications.inception_v3 import InceptionV3
 from keras.models import Model
-from keras.layers import Dense, Dropout, UpSampling2D
-from keras.layers import Conv2DTranspose, Reshape
+from keras.layers import Dropout, UpSampling2D
+from keras.layers import Conv2DTranspose, ZeroPadding2D
 
 def get_model(input_shape, final_activation):
 
@@ -22,23 +22,20 @@ def get_model(input_shape, final_activation):
 	# Using Inception with ImageNet pre-trained weights
 	inception = InceptionV3(weights='imagenet')
 
-	# Get rid of final fully-connected layer
-	inception.layers.pop()
+	# Get rid of final two layers - global average pooling, FC
+	for i in range(2):
+		inception.layers.pop()
 
 	# Grab input and output in order to make a new model
 	inp = inception.input
 	out = inception.layers[-1].output
 
-	# Note that now final layer of inception is `GlobalAveragePooling2D`
-	# Use FC layer to get back to desired size
-	x = Dense(5*5*64, activation = 'relu', name = 'Middle')(out)
-	x = Dropout(0.5)(x)
-
-	# Reshape to use in convolutional layer
-	x = Reshape((5, 5, 64))(x)
+	# Output above should be 8x8
+	# Use zero padding to get up to a 10x10 like previous architectures
+	x = ZeroPadding2D(padding=((1, 1),(1, 1)))(out)
 
 	# Upsample 1
-	x = UpSampling2D(size=(4,4))(x)
+	x = UpSampling2D(size=(2,2))(x)
 
 	# Deconv 1
 	x = Conv2DTranspose(128, (3, 3), padding='valid', strides=(1,1), activation = 'relu', name = 'Deconv1')(x)

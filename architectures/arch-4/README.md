@@ -5,13 +5,15 @@ Similar to architecture 3, check performance gained when using an ImageNet pretr
 
 ## Summary
 1. Used ResNet for the encoder portion of the architecture
-   - `arch-4a` - uses `GlobalAveragePooling2D` before fully-connected "middle" layer
+   - `arch-4a` - uses `ZeroPadding2D` before fully-connected "middle" layer
 2. Used Inception for the encoder portion of the architecture
-   - `arch-4b` - uses `GlobalAveragePooling2D` before fully-connected "middle" layer
+   - `arch-4b` - uses `ZeroPadding2D` before fully-connected "middle" layer
+
+The `ZeroPadding2D` networks from architecture 3 are used as they previously performed the best.
 
 ## Results
 
 Arch | Test Acc | Speed | Parameters
 --- | --- | --- | ---
-arch-4a | 0.9751 | 48.60 ms | 27,226,273
-**arch-4b** | 0.9764 | 83.43 ms | 25,441,345
+arch-4a | 0.9811 | 48.68 ms | 26,233,441
+**arch-4b** | 0.9894 | 82.70 ms | 24,448,513

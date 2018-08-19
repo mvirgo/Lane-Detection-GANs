@@ -38,8 +38,6 @@ All models are trained with the default output activation and loss above, unless
 ## Results
 **In Progress**
 
-**Results below need to be updated for arch-4 due to change in labeling**
-
 **Upcoming Changes** - Based on testing the first four architectures, there actually is surprisingly little difference specific to lane detection. This may be due to the simplicity of the task, where the lane is nearly always in the same location, and it's only the edges of the lane where most changes take place. As such, I might consider re-doing the work on a simplified version of Cityscapes dataset (say on a subset of classes), to potentially get more useful results.
 
 Inference times benchmarked using a GTX 1060.
@@ -54,6 +52,6 @@ Architecture | Test Acc | Speed | Parameters
 arch-1 | 0.9891 | 5.47 ms | 725,101
 arch-2 | 0.9920 | 6.24 ms | 746,413
 arch-3 | 0.9705 | 42.18 ms | 26,233,441
-arch-4 | 0.9764 | 83.43 ms | 25,441,345
+arch-4 | 0.9894 | 82.70 ms | 24,448,513
 
-`arch-1`, `arch-2` and `arch-4` are also fairly visually appealing, while `arch-3` seems to be more like a lane-shaped blob that goes outside the lane lines often.
+`arch-1`, `arch-2` and `arch-4` are also fairly visually appealing, while `arch-3` seems to be more like a lane-shaped blob that goes outside the lane lines often. While `arch-4` is slightly behind `arch-2`, I think `arch-4` actually has the true "best" performance - it performs better on the shadow under the bridge, as well as actually extending further out into the distance - it may be that it actually loses points on its accuracy for extending further out along the lane the annotated labels do (which go roughly 2/3 of the way out to the horizon typically). It also did quite well throughout the harder challenge video, where glare and shadows are much more prevalent, than the others.
